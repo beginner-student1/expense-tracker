@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ledger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app">
+    <h1>Where It All Went</h1>
+    <p class="sub">Track expense in ten seconds. See the pattern by month.</p>
+
+    <!-- quick glance: current month -->
+    <div class="summary">
+      <div class="card">
+        <p class="label">Spent today🙁</p>
+        <p class="value" id="today-spent">₹0</p>
+      </div>
+      <div class="card">
+        <p class="label">Spent this month🙁</p>
+        <p class="value" id="month-spent-mini">₹0</p>
+      </div>
+      <div class="card">
+        <p class="label">Saved this month🙂</p>
+        <p class="value" id="month-saved-mini">₹0</p>
+      </div>
+      <div class="card">
+        <p class="label", id="save">BALANCE🙂</p>
+        <p class="value" id="month-left-mini">₹0</p>
+      </div>
+    </div>
+
+    <!-- add entry: expense or income -->
+    <form class="card" id="form">
+      <div class="type-toggle">
+        <button type="button" class="type-btn on" data-type="expense">Expense</button>
+        <button type="button" class="type-btn" data-type="income">Income</button>
+      </div>
+      <div class="field f-date"><label>Date</label><input type="date" id="f-date"></div>
+      <div class="field f-cat" id="cat-field"><label>Category</label><select id="f-cat"></select></div>
+      <div class="field f-amt"><label>Amount (₹)</label><input type="number" id="f-amt" min="0" step="0.01"
+          placeholder="0"></div>
+      <div class="field f-note"><label>Note (optional)</label><input type="text" id="f-note"
+          placeholder="e.g. salary, auto rickshaw"></div>
+      <p id="form-error">Enter a valid amount greater than 0.</p>
+      <button type="button" id="add-btn">+ Add</button>
+    </form>
+
+    <div class="tabs">
+      <button id="tab-today" class="tab-btn-nav on">Today</button>
+      <button id="tab-history" class="tab-btn-nav">History</button>
+    </div>
+
+    <!-- TODAY -->
+    <div id="view-today" class="card">
+      <p class="empty" id="today-empty">Nothing logged today.</p>
+      <div id="today-list"></div>
+    </div>
+
+    <!-- HISTORY -->
+    <div id="view-history" class="card hide">
+      <input type="month" id="f-month">
+
+      <div class="stat-row"><span>Earned</span><span id="m-earned">₹0</span></div>
+      <div class="stat-row"><span>Spent</span><span id="m-spent">₹0</span></div>
+      <div class="stat-row"><span>Saved</span><span id="m-saved">₹0</span></div>
+      <div class="stat-row total"><span>Left</span><span id="m-left">₹0</span></div>
+
+      <h2>By category</h2>
+      <p class="empty" id="cat-empty">No expenses this month.</p>
+      <div id="cat-bars"></div>
+
+      <h2>By day</h2>
+      <p class="empty" id="day-empty">No expenses this month.</p>
+      <div id="day-list"></div>
+
+      <h2>All entries this month</h2>
+      <p class="empty" id="entries-empty">No entries this month.</p>
+      <div id="month-entries"></div>
+
+      <h2>All months</h2>
+      <div id="all-months"></div>
+
+      <button type="button" id="clear-btn">Clear all data</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
